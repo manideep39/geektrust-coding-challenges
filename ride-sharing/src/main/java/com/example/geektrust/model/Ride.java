@@ -1,19 +1,21 @@
 package com.example.geektrust.model;
 
+import com.example.geektrust.dto.Location;
+
 public class Ride {
     private final String id;
     private final Rider rider;
     private final Driver driver;
-    private final int[] originCoordinates;
-    private int[] destinationCoordinates;
+    private final Location origin;
+    private Location destination;
     private int timeTake;
     private Bill bill;
 
-    public Ride(String id, Rider rider, Driver driver, int[] originCoordinates) {
+    public Ride(String id, Rider rider, Driver driver, Location origin) {
         this.id = id;
         this.rider = rider;
         this.driver = driver;
-        this.originCoordinates = originCoordinates;
+        this.origin = origin;
     }
 
     public Bill getBill() {
@@ -36,8 +38,8 @@ public class Ride {
         return driver;
     }
 
-    public int[] getOriginCoordinates() {
-        return originCoordinates;
+    public Location getOrigin() {
+        return origin;
     }
 
     public int getTimeTake() {
@@ -48,11 +50,11 @@ public class Ride {
         this.timeTake = timeTake;
     }
 
-    public int[] getDestinationCoordinates() {
-        return destinationCoordinates;
+    public Location getDestination() {
+        return destination;
     }
 
-    public void setDestinationCoordinates(int[] destinationCoordinates) {
-        this.destinationCoordinates = destinationCoordinates;
+    public void setDestination(Location destination) {
+        this.destination = destination;
     }
 }

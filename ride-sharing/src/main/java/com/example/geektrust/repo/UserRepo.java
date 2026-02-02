@@ -14,6 +14,14 @@ public class UserRepo {
         riders = new ArrayList<>();
     }
 
+    private static class Holder {
+        private static final UserRepo INSTANCE = new UserRepo();
+    }
+
+    public static UserRepo getInstance() {
+        return Holder.INSTANCE;
+    }
+
     public void addDriver(Driver driver) {
         drivers.add(driver);
     }

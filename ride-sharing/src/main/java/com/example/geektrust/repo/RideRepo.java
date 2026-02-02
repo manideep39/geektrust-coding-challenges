@@ -10,6 +10,16 @@ public class RideRepo {
     private final List<Ride> rides = new ArrayList<>();
     private final Map<Rider, List<Driver>> matches = new HashMap<>();
 
+    private RideRepo() {}
+
+    private static class Holder {
+        private static final RideRepo INSTANCE = new RideRepo();
+    }
+
+    public static RideRepo getInstance() {
+        return Holder.INSTANCE;
+    }
+
     public void saveRide(Ride ride) {
         rides.add(ride);
     }

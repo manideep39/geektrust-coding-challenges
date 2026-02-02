@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
-        UserService userService = new UserService();
-        RideService riderService = new RideService();
+        UserService userService = UserService.getInstance();
+        RideService riderService = RideService.getInstance();
         Logger logger = Logger.getLogger(Main.class.getName());
 
         try {

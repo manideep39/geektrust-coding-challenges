@@ -1,10 +1,12 @@
 package com.example.geektrust.model;
 
+import com.example.geektrust.dto.Location;
+
 public final class Rider extends User {
     private boolean inRide;
 
-    public Rider(String id, int[] coordinates) {
-        super(id, coordinates);
+    public Rider(String id, Location location) {
+        super(id, location);
     }
 
     public boolean isInRide() {
