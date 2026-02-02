@@ -1,5 +1,7 @@
 package com.example.geektrust.service;
 
+import com.example.geektrust.application.service.RideService;
+import com.example.geektrust.application.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +25,7 @@ class RideServiceTest {
         ADD_RIDER R1 0 0
         ADD_RIDER R1 0 0
          */
-        String[] matchDetails = new String[] {"R1"};
+
         String[] riderDetails1 = new String[] { "R1", "2", "4"};
         String[] driverOneDetails = new String[] { "D1", "1", "1"};
         String[] driverTwoDetails = new String[] { "D2", "4", "5"};
@@ -37,6 +39,6 @@ class RideServiceTest {
         userService.createDriver(driverThirdDetails);
         userService.createDriver(driverFourDetails);
 
-        rideService.match(matchDetails);
+        rideService.match("R1");
     }
 }

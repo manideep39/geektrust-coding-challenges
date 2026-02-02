@@ -1,6 +1,7 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.model;
 
-import com.example.geektrust.dto.Location;
+import com.example.geektrust.domain.valueobject.Location;
+import com.example.geektrust.exception.RideException;
 
 public final class Driver extends User {
     private boolean inRide;
@@ -13,8 +14,10 @@ public final class Driver extends User {
         return inRide;
     }
 
-    public void setInRide(boolean inRide) {
-        this.inRide = inRide;
+    public void startRide() {
+        if (inRide)
+            throw new RideException("RIDE_IN_PROGRESS");
+        inRide = true;
     }
 
     @Override

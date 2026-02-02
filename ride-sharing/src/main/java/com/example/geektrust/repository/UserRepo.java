@@ -1,7 +1,7 @@
-package com.example.geektrust.repo;
+package com.example.geektrust.repository;
 
-import com.example.geektrust.model.Driver;
-import com.example.geektrust.model.Rider;
+import com.example.geektrust.domain.model.Driver;
+import com.example.geektrust.domain.model.Rider;
 
 import java.util.*;
 

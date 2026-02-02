@@ -1,4 +1,4 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.model;
 
 /*
  A base fare of ₹50 is charged for every ride.

@@ -1,10 +1,10 @@
-package com.example.geektrust.service;
+package com.example.geektrust.application.service;
 
-import com.example.geektrust.dto.Location;
+import com.example.geektrust.domain.valueobject.Location;
 import com.example.geektrust.exception.UserException;
-import com.example.geektrust.model.Driver;
-import com.example.geektrust.model.Rider;
-import com.example.geektrust.repo.UserRepo;
+import com.example.geektrust.domain.model.Driver;
+import com.example.geektrust.domain.model.Rider;
+import com.example.geektrust.repository.UserRepo;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.service;
 
-import com.example.geektrust.dto.Location;
+import com.example.geektrust.domain.valueobject.Location;
 
 public class DistanceCalculator {
 

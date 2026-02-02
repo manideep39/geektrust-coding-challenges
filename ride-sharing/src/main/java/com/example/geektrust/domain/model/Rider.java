@@ -1,6 +1,6 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.model;
 
-import com.example.geektrust.dto.Location;
+import com.example.geektrust.domain.valueobject.Location;
 
 public final class Rider extends User {
     private boolean inRide;

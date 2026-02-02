@@ -1,7 +1,8 @@
 package com.example.geektrust;
 
-import com.example.geektrust.service.RideService;
-import com.example.geektrust.service.UserService;
+import com.example.geektrust.application.service.RideService;
+import com.example.geektrust.application.service.UserService;
+import com.example.geektrust.controller.RideController;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 public class Main {
     public static void main(String[] args) {
         UserService userService = UserService.getInstance();
-        RideService riderService = RideService.getInstance();
+        RideController rideController = new RideController();
         Logger logger = Logger.getLogger(Main.class.getName());
 
         try {
@@ -26,7 +27,8 @@ public class Main {
                switch (input[0]) {
                    case "ADD_RIDER" -> userService.createRider(details);
                    case "ADD_DRIVER" -> userService.createDriver(details);
-                   case "MATCH" -> riderService.match(details);
+                   case "MATCH" -> rideController.match(details);
+                   case "START_RIDE" -> rideController.startRide(details);
                    default -> throw new IllegalArgumentException("Unknow Command");
                }
             }

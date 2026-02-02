@@ -1,4 +1,4 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.model;
 
 import java.math.BigDecimal;
 

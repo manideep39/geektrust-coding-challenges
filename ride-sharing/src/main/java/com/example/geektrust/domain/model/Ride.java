@@ -1,6 +1,6 @@
-package com.example.geektrust.model;
+package com.example.geektrust.domain.model;
 
-import com.example.geektrust.dto.Location;
+import com.example.geektrust.domain.valueobject.Location;
 
 public class Ride {
     private final String id;
@@ -16,6 +16,10 @@ public class Ride {
         this.rider = rider;
         this.driver = driver;
         this.origin = origin;
+    }
+
+    public static Ride start(String id, Rider rider, Driver driver) {
+        return new Ride(id, rider, driver, rider.getLocation());
     }
 
     public Bill getBill() {
