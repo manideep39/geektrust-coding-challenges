@@ -19,15 +19,15 @@ public class DriverMatchingPolicy {
     public List<Driver> selectMatches(Rider rider, List<Driver> drivers) {
         return drivers.stream()
                 .map(driver -> toCandidate(driver, rider))
-                .filter(this::isDriverEligible)
+                .filter(this::isDriverInAllowedDistance)
                 .sorted(rankingComparator())
                 .limit(MAX_MATCHES)
                 .map(DriverDistance::driver)
                 .toList();
     }
 
-    private boolean isDriverEligible(DriverDistance dd) {
-        return dd.distance() <= MAX_ALLOWED_DISTANCE && !dd.driver().isInRide();
+    private boolean isDriverInAllowedDistance(DriverDistance dd) {
+        return dd.distance() <= MAX_ALLOWED_DISTANCE;
     }
 
     private Comparator<DriverDistance> rankingComparator() {

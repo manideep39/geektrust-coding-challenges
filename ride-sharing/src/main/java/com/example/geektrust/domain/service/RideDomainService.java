@@ -3,6 +3,7 @@ package com.example.geektrust.domain.service;
 import com.example.geektrust.domain.model.Driver;
 import com.example.geektrust.domain.model.Ride;
 import com.example.geektrust.domain.model.Rider;
+import com.example.geektrust.domain.valueobject.Location;
 import com.example.geektrust.exception.RideException;
 import com.example.geektrust.repository.RideRepo;
 
@@ -26,5 +27,13 @@ public class RideDomainService {
         if (drivers.size() < n)
             throw new RideException("INVALID_RIDE");
         return drivers.get(n - 1);
+    }
+
+    public Ride stopRide(String rideId, Location location, int timeTaken) {
+        Ride ride = rideRepo.getRideById(rideId)
+                .orElseThrow(() -> new RideException("INVALID_RIDE"));
+
+        ride.stopRide(location, timeTaken);
+        return ride;
     }
 }

@@ -16,8 +16,14 @@ public final class Driver extends User {
 
     public void startRide() {
         if (inRide)
-            throw new RideException("RIDE_IN_PROGRESS");
+            throw new RideException("INVALID_RIDE");
         inRide = true;
+    }
+
+    public void stopRide() {
+        if (!inRide)
+            throw new RideException("INVALID_RIDE");
+        inRide = false;
     }
 
     @Override

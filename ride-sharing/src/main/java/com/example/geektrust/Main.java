@@ -29,6 +29,7 @@ public class Main {
                    case "ADD_DRIVER" -> userService.createDriver(details);
                    case "MATCH" -> rideController.match(details);
                    case "START_RIDE" -> rideController.startRide(details);
+                   case "STOP_RIDE" -> rideController.stopRide(details);
                    default -> throw new IllegalArgumentException("Unknow Command");
                }
             }

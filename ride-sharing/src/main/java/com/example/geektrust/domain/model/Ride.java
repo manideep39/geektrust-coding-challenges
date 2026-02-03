@@ -1,6 +1,7 @@
 package com.example.geektrust.domain.model;
 
 import com.example.geektrust.domain.valueobject.Location;
+import com.example.geektrust.exception.RideException;
 
 public class Ride {
     private final String id;
@@ -8,7 +9,7 @@ public class Ride {
     private final Driver driver;
     private final Location origin;
     private Location destination;
-    private int timeTake;
+    private int timeTaken;
     private Bill bill;
 
     public Ride(String id, Rider rider, Driver driver, Location origin) {
@@ -20,6 +21,14 @@ public class Ride {
 
     public static Ride start(String id, Rider rider, Driver driver) {
         return new Ride(id, rider, driver, rider.getLocation());
+    }
+
+    public void stopRide(Location location, int timeTaken) {
+        if (this.destination != null)
+            throw new RideException("INVALID_RIDE");
+        this.driver.stopRide();
+        this.destination = location;
+        this.timeTaken = timeTaken;
     }
 
     public Bill getBill() {
@@ -46,12 +55,8 @@ public class Ride {
         return origin;
     }
 
-    public int getTimeTake() {
-        return timeTake;
-    }
-
-    public void setTimeTake(int timeTake) {
-        this.timeTake = timeTake;
+    public int getTimeTaken() {
+        return timeTaken;
     }
 
     public Location getDestination() {
