@@ -49,6 +49,4 @@ public class UserRepo {
                 .filter(driver -> driver.getId().equals(riderId))
                 .findAny();
     }
-
-
 }

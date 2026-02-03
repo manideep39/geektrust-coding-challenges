@@ -13,12 +13,12 @@ public class BillingDomainService {
         if (!ride.isRideEnded())
             throw new RideException("RIDE_NOT_COMPLETED");
 
-        BigDecimal amount = BigDecimal.valueOf(
+        var amount = BigDecimal.valueOf(
                 rideCharges.baseFare() +
                 (rideCharges.perKmFare() * ride.getRideDistance(distanceCalculator)) +
                 (rideCharges.perMinFare() * ride.getTimeTaken()));
-        BigDecimal serviceTax = amount.multiply(BigDecimal.valueOf(rideCharges.serviceTax()));
-        BigDecimal amountAfterTax = amount.add(serviceTax).setScale(2, RoundingMode.HALF_UP);
+        var serviceTax = amount.multiply(BigDecimal.valueOf(rideCharges.serviceTax()));
+        var amountAfterTax = amount.add(serviceTax).setScale(2, RoundingMode.HALF_UP);
         return new Bill(ride, rideCharges, amountAfterTax);
     }
 }

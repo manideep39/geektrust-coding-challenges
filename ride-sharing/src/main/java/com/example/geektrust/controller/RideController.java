@@ -1,17 +1,17 @@
 package com.example.geektrust.controller;
 
-import com.example.geektrust.application.service.RideService;
+import com.example.geektrust.service.RideService;
 import com.example.geektrust.domain.valueobject.Location;
 import com.example.geektrust.exception.RideException;
 import com.example.geektrust.exception.UserException;
 
 public class RideController {
-    private final RideService rideService = RideService.getInstance();
+    private final RideService rideService = new RideService();
 
     public void match(String[] details) {
         try {
-            String riderId = details[0];
-            String output = rideService.match(riderId);
+            var riderId = details[0];
+            var output = rideService.match(riderId);
             System.out.println(output);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Not enough details in MATCH command");
@@ -22,10 +22,10 @@ public class RideController {
 
     public void startRide(String[] details) {
         try {
-            String rideId = details[0];
+            var rideId = details[0];
             int nThDriver = Integer.parseInt(details[1]);
-            String riderId = details[2];
-            String output = rideService.startRide(rideId, nThDriver, riderId);
+            var riderId = details[2];
+            var output = rideService.startRide(rideId, nThDriver, riderId);
             System.out.println(output);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Not enough details in START_RIDE command");

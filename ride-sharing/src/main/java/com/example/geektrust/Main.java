@@ -11,19 +11,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        UserController userController = new UserController();
-        RideController rideController = new RideController();
-        BillController billController = new BillController();
+        var userController = new UserController();
+        var rideController = new RideController();
+        var billController = new BillController();
 
         try {
-            // the file to be opened for reading
-            FileInputStream fis = new FileInputStream(args[0]);
-            Scanner sc = new Scanner(fis); // file to be scanned
-            // returns true if there is another line to read
+            var fis = new FileInputStream(args[0]);
+            var sc = new Scanner(fis);
             while (sc.hasNextLine()) {
-               String[] input = sc.nextLine().split(" ");
-               String inputCommand = input[0];
-               String[] inputDetails = Arrays.copyOfRange(input, 1, input.length);
+               var input = sc.nextLine().split(" ");
+               var inputCommand = input[0];
+               var inputDetails = Arrays.copyOfRange(input, 1, input.length);
                switch (inputCommand) {
                    case "ADD_RIDER" -> userController.createRider(inputDetails);
                    case "ADD_DRIVER" -> userController.createDriver(inputDetails);
@@ -34,7 +32,7 @@ public class Main {
                    default -> throw new IllegalArgumentException("Unknow Command");
                }
             }
-            sc.close(); // closes the scanner
+            sc.close();
         } catch (IOException | IllegalArgumentException | IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
         }

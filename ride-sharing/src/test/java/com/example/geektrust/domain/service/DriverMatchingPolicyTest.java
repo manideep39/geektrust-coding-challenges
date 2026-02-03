@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DriverMatchingPolicyTest {
 
     @Test
@@ -28,8 +26,8 @@ class DriverMatchingPolicyTest {
         Driver driver3 = new Driver("D3", new Location(2, 2));
         Driver driver4 = new Driver("D4", new Location(8, 7));
 
-        List<Driver> matchedDrivers = driverMatchingPolicy.selectMatches(rider,
-                new ArrayList<Driver>(List.of(driver1, driver2, driver3, driver4, driver6, driver7, driver8)));
+        var matchedDrivers = driverMatchingPolicy.selectMatches(rider,
+                new ArrayList<>(List.of(driver1, driver2, driver3, driver4, driver6, driver7, driver8)));
         matchedDrivers.forEach(System.out::println);
     }
 

@@ -1,13 +1,12 @@
 package com.example.geektrust.service;
 
-import com.example.geektrust.application.service.UserService;
 import com.example.geektrust.domain.valueobject.Location;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserServiceTest {
-    private static final UserService userService = UserService.getInstance();
+    private static final UserService userService = new UserService();
 
     @Test
     void addRider() {

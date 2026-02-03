@@ -1,21 +1,12 @@
 package com.example.geektrust.service;
 
-import com.example.geektrust.application.service.RideService;
-import com.example.geektrust.application.service.UserService;
 import com.example.geektrust.domain.valueobject.Location;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RideServiceTest {
 
-    RideService rideService;
-    UserService userService;
-
-    @BeforeEach
-    void setUp() {
-        rideService = RideService.getInstance();
-        userService = UserService.getInstance();
-    }
+    RideService rideService = new RideService();
+    UserService userService = new UserService();
 
     @Test
     void match() {

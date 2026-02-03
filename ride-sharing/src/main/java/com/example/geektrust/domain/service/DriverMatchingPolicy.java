@@ -36,7 +36,7 @@ public class DriverMatchingPolicy {
     }
 
     private DriverDistance toCandidate(Driver driver, Rider rider) {
-        double distance = distanceCalculator.calculate(driver.getLocation(), rider.getLocation());
+        var distance = distanceCalculator.calculate(driver.getLocation(), rider.getLocation());
         return new DriverDistance(driver, distance);
     }
 }

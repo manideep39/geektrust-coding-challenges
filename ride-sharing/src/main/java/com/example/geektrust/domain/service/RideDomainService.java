@@ -16,8 +16,8 @@ public class RideDomainService {
         if (rideRepo.getRideById(rideId).isPresent())
             throw new RideException("INVALID_RIDE");
 
-        List<Driver> matchedDrivers = rideRepo.getMatchedDriversForRider(rider);
-        Driver driver = selectNthDriver(matchedDrivers, nThDriver);
+        var matchedDrivers = rideRepo.getMatchedDriversForRider(rider);
+        var driver = selectNthDriver(matchedDrivers, nThDriver);
         driver.startRide();
 
         return Ride.start(rideId, rider, driver);
@@ -30,7 +30,7 @@ public class RideDomainService {
     }
 
     public Ride stopRide(String rideId, Location location, int timeTaken) {
-        Ride ride = rideRepo.getRideById(rideId)
+        var ride = rideRepo.getRideById(rideId)
                 .orElseThrow(() -> new RideException("INVALID_RIDE"));
 
         ride.stopRide(location, timeTaken);

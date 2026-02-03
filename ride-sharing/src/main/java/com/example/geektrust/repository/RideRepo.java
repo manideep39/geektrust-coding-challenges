@@ -33,7 +33,7 @@ public class RideRepo {
     }
 
     public Optional<Ride> getRideById(String rideId) {
-        Ride ride = rides.get(rideId);
+        var ride = rides.get(rideId);
         return Optional.ofNullable(ride);
     }
 }

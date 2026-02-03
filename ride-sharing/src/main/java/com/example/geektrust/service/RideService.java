@@ -1,4 +1,4 @@
-package com.example.geektrust.application.service;
+package com.example.geektrust.service;
 
 import com.example.geektrust.domain.model.Ride;
 import com.example.geektrust.domain.service.DriverMatchingPolicy;
@@ -16,19 +16,9 @@ import java.util.stream.Collectors;
 
 public class RideService {
     private final RideRepo rideRepo = RideRepo.getInstance();
-    private final UserService userService = UserService.getInstance();
+    private final UserService userService = new UserService();
     private final DriverMatchingPolicy driverMatchingPolicy = new DriverMatchingPolicy(new DistanceCalculator());
     private final RideDomainService rideDomainService = new RideDomainService();
-
-    private RideService() {}
-
-    private static class Holder {
-        private static final RideService INSTANCE = new RideService();
-    }
-
-    public static RideService getInstance() {
-        return Holder.INSTANCE;
-    }
 
     public Ride getRideById(String rideId) {
         return rideRepo.getRideById(rideId)

@@ -1,6 +1,6 @@
 package com.example.geektrust.controller;
 
-import com.example.geektrust.application.service.BillService;
+import com.example.geektrust.service.BillService;
 import com.example.geektrust.exception.BillException;
 import com.example.geektrust.exception.RideException;
 
@@ -9,8 +9,8 @@ public class BillController {
 
     public void bill(String[] details) {
         try {
-            String rideId = details[0];
-            String output = billService.bill(rideId);
+            var rideId = details[0];
+            var output = billService.bill(rideId);
             System.out.println(output);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Not enough details for bill command");
