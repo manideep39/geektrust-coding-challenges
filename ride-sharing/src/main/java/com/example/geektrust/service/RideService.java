@@ -26,9 +26,9 @@ public class RideService {
     }
 
     public String match(String riderId) throws UserException {
-        Rider rider = userService.getRiderById(riderId);
-        List<Driver> drivers = userService.getDrivers();
-        List<Driver> matchedDrivers = driverMatchingPolicy.selectMatches(rider, drivers);
+        var rider = userService.getRiderById(riderId);
+        var drivers = userService.getDrivers();
+        var matchedDrivers = driverMatchingPolicy.selectMatches(rider, drivers);
         rideRepo.saveMatches(rider, matchedDrivers);
         return matchedDrivers.isEmpty() ?
                 "NO_DRIVERS_AVAILABLE" :
@@ -38,14 +38,14 @@ public class RideService {
     }
 
     public String startRide(String rideId, int nThDriver, String riderId) {
-        Rider rider = userService.getRiderById(riderId);
-        Ride ride = rideDomainService.startRide(rideId, nThDriver, rider);
+        var rider = userService.getRiderById(riderId);
+        var ride = rideDomainService.startRide(rideId, nThDriver, rider);
         rideRepo.saveRide(ride);
         return "RIDE_STARTED " + ride.getId();
     }
 
     public String stopRide(String rideId, Location location, int timeTaken) {
-        Ride ride = rideDomainService.stopRide(rideId, location, timeTaken);
+        var ride = rideDomainService.stopRide(rideId, location, timeTaken);
         rideRepo.saveRide(ride);
         return "RIDE_STOPPED " + ride.getId();
     }
