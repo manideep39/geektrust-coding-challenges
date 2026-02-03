@@ -40,33 +40,19 @@ public class UserService {
                 .orElseThrow(() -> new UserException("RIDER NOT FOUND"));
     }
 
-    public void createDriver(String[] driverDetails) {
-        if (driverDetails.length != 3)
-            throw new IllegalArgumentException("Driver details insufficient");
-
-        String driverId = driverDetails[0];
+    public void createDriver(String driverId, Location location) {
         if (userRepo.getDriverById(driverId).isPresent())
             throw new UserException("Driver with same id already exist");
 
-        int xCoordinates = Integer.parseInt(driverDetails[1]);
-        int yCoordinates = Integer.parseInt(driverDetails[2]);
-        Driver driver = new Driver(driverId, new Location(xCoordinates, yCoordinates));
-
+        Driver driver = new Driver(driverId, location);
         userRepo.addDriver(driver);
     }
 
-    public void createRider(String[] riderDetails) {
-        if (riderDetails.length != 3)
-            throw new IllegalArgumentException("Driver details insufficient");
-
-        String riderId = riderDetails[0];
+    public void createRider(String riderId, Location location) {
         if (userRepo.getDriverById(riderId).isPresent())
             throw new UserException("Rider with same id already exist");
 
-        int xCoordinates = Integer.parseInt(riderDetails[1]);
-        int yCoordinates = Integer.parseInt(riderDetails[2]);
-        Rider rider = new Rider(riderId, new Location(xCoordinates, yCoordinates));
-
+        Rider rider = new Rider(riderId, location);
         userRepo.addRider(rider);
     }
 }

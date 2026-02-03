@@ -30,6 +30,11 @@ public class RideService {
         return Holder.INSTANCE;
     }
 
+    public Ride getRideById(String rideId) {
+        return rideRepo.getRideById(rideId)
+                .orElseThrow(() -> new RideException("INVALID_RIDE"));
+    }
+
     public String match(String riderId) throws UserException {
         Rider rider = userService.getRiderById(riderId);
         List<Driver> drivers = userService.getDrivers();
@@ -51,6 +56,7 @@ public class RideService {
 
     public String stopRide(String rideId, Location location, int timeTaken) {
         Ride ride = rideDomainService.stopRide(rideId, location, timeTaken);
+        rideRepo.saveRide(ride);
         return "RIDE_STOPPED " + ride.getId();
     }
 }

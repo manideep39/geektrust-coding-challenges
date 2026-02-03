@@ -1,20 +1,19 @@
 package com.example.geektrust;
 
-import com.example.geektrust.application.service.RideService;
-import com.example.geektrust.application.service.UserService;
+import com.example.geektrust.controller.BillController;
 import com.example.geektrust.controller.RideController;
+import com.example.geektrust.controller.UserController;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
-        UserService userService = UserService.getInstance();
+        UserController userController = new UserController();
         RideController rideController = new RideController();
-        Logger logger = Logger.getLogger(Main.class.getName());
+        BillController billController = new BillController();
 
         try {
             // the file to be opened for reading
@@ -23,19 +22,21 @@ public class Main {
             // returns true if there is another line to read
             while (sc.hasNextLine()) {
                String[] input = sc.nextLine().split(" ");
-               String[] details = Arrays.copyOfRange(input, 1, input.length);
-               switch (input[0]) {
-                   case "ADD_RIDER" -> userService.createRider(details);
-                   case "ADD_DRIVER" -> userService.createDriver(details);
-                   case "MATCH" -> rideController.match(details);
-                   case "START_RIDE" -> rideController.startRide(details);
-                   case "STOP_RIDE" -> rideController.stopRide(details);
+               String inputCommand = input[0];
+               String[] inputDetails = Arrays.copyOfRange(input, 1, input.length);
+               switch (inputCommand) {
+                   case "ADD_RIDER" -> userController.createRider(inputDetails);
+                   case "ADD_DRIVER" -> userController.createDriver(inputDetails);
+                   case "MATCH" -> rideController.match(inputDetails);
+                   case "START_RIDE" -> rideController.startRide(inputDetails);
+                   case "STOP_RIDE" -> rideController.stopRide(inputDetails);
+                   case "BILL" -> billController.bill(inputDetails);
                    default -> throw new IllegalArgumentException("Unknow Command");
                }
             }
             sc.close(); // closes the scanner
-        } catch (IOException | IllegalArgumentException e) {
-            logger.severe(e.getMessage());
+        } catch (IOException | IllegalArgumentException | IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

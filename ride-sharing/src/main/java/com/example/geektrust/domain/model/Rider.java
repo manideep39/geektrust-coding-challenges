@@ -8,12 +8,4 @@ public final class Rider extends User {
     public Rider(String id, Location location) {
         super(id, location);
     }
-
-    public boolean isInRide() {
-        return inRide;
-    }
-
-    public void setInRide(boolean inRide) {
-        this.inRide = inRide;
-    }
 }

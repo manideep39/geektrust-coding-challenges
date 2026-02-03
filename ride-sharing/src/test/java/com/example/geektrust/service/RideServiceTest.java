@@ -2,6 +2,7 @@ package com.example.geektrust.service;
 
 import com.example.geektrust.application.service.RideService;
 import com.example.geektrust.application.service.UserService;
+import com.example.geektrust.domain.valueobject.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,26 +19,12 @@ class RideServiceTest {
 
     @Test
     void match() {
-        /*
-        ADD_DRIVER D1 1 1
-        ADD_DRIVER D2 4 5
-        ADD_DRIVER D3 2 2
-        ADD_RIDER R1 0 0
-        ADD_RIDER R1 0 0
-         */
-
-        String[] riderDetails1 = new String[] { "R1", "2", "4"};
-        String[] driverOneDetails = new String[] { "D1", "1", "1"};
-        String[] driverTwoDetails = new String[] { "D2", "4", "5"};
-        String[] driverThirdDetails = new String[] { "D3", "2", "2"};
-        String[] driverFourDetails = new String[] { "D4", "10", "10"};
-
-        userService.createRider(riderDetails1);
-
-        userService.createDriver(driverOneDetails);
-        userService.createDriver(driverTwoDetails);
-        userService.createDriver(driverThirdDetails);
-        userService.createDriver(driverFourDetails);
+        userService.createRider("R1", new Location(2, 4));
+        userService.createDriver("D1", new Location(1, 1));
+        userService.createDriver("D2", new Location(4, 5));
+        userService.createDriver("D3", new Location(2, 2));
+        userService.createDriver("D4", new Location(10, 10));
+        userService.createDriver("D5", new Location(7, 7));
 
         rideService.match("R1");
     }

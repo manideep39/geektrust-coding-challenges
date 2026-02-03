@@ -7,7 +7,7 @@ import com.example.geektrust.domain.model.Rider;
 import java.util.*;
 
 public class RideRepo {
-    private final List<Ride> rides = new ArrayList<>();
+    private final Map<String, Ride> rides = new HashMap<>();
     private final Map<Rider, List<Driver>> matches = new HashMap<>();
 
     private RideRepo() {}
@@ -29,17 +29,11 @@ public class RideRepo {
     }
 
     public void saveRide(Ride ride) {
-        rides.add(ride);
-    }
-
-    public List<Ride> getRides() {
-        return rides;
+        rides.put(ride.getId(), ride);
     }
 
     public Optional<Ride> getRideById(String rideId) {
-        return rides.stream()
-                .filter(ride -> ride.getId().equals(rideId))
-                .findAny();
+        Ride ride = rides.get(rideId);
+        return Optional.ofNullable(ride);
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.geektrust.domain.model;
 
+import com.example.geektrust.domain.service.DistanceCalculator;
 import com.example.geektrust.domain.valueobject.Location;
 import com.example.geektrust.exception.RideException;
 
@@ -10,9 +11,9 @@ public class Ride {
     private final Location origin;
     private Location destination;
     private int timeTaken;
-    private Bill bill;
+    private RideStatus status = RideStatus.IN_PROGRESS;
 
-    public Ride(String id, Rider rider, Driver driver, Location origin) {
+    private Ride(String id, Rider rider, Driver driver, Location origin) {
         this.id = id;
         this.rider = rider;
         this.driver = driver;
@@ -24,46 +25,31 @@ public class Ride {
     }
 
     public void stopRide(Location location, int timeTaken) {
-        if (this.destination != null)
+        if (this.status != RideStatus.IN_PROGRESS)
             throw new RideException("INVALID_RIDE");
+        this.status = RideStatus.ENDED;
         this.driver.stopRide();
         this.destination = location;
         this.timeTaken = timeTaken;
     }
 
-    public Bill getBill() {
-        return bill;
+    public boolean isRideEnded() {
+        return status == RideStatus.ENDED;
     }
 
-    public void setBill(Bill bill) {
-        this.bill = bill;
+    public double getRideDistance(DistanceCalculator distanceCalculator) {
+        return distanceCalculator.calculate(origin, destination);
     }
 
     public String getId() {
         return id;
     }
 
-    public Rider getRider() {
-        return rider;
-    }
-
     public Driver getDriver() {
         return driver;
     }
 
-    public Location getOrigin() {
-        return origin;
-    }
-
     public int getTimeTaken() {
         return timeTaken;
-    }
-
-    public Location getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Location destination) {
-        this.destination = destination;
     }
 }
